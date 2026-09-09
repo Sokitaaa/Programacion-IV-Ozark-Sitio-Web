@@ -1,0 +1,619 @@
+/* ==========================================================
+   OZARK - estilos.css
+   Estilos principales del sitio
+   ========================================================== */
+
+/* ---------- 1. Variables de color y tipografia ---------- */
+:root {
+    --fondo:          #0d1114;   /* negro con tirada azul */
+    --superficie:     #141c20;   /* cabecera y pie */
+    --borde:          #222f34;
+    --texto:          #d7dedf;
+    --texto-suave:    #8b9b9d;
+    --agua:           #6f9e93;   /* verde agua del lago */
+    --dinero:         #b8925a;   /* dorado apagado */
+
+    --fuente-titulo:  'Oswald', 'Arial Narrow', sans-serif;
+    --fuente-texto:   'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ---------- 2. Reset basico ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    line-height: 1.7;
+
+    /* El body es flex en columna para que el pie quede siempre abajo */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Contenedor centrado que usan cabecera, main y pie */
+.contenedor {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ---------- 3. Cabecera ---------- */
+.cabecera {
+    background-color: var(--superficie);
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.cabecera__interior {
+    display: flex;
+    justify-content: space-between; /* logo a la izquierda, menu a la derecha */
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+/* --- Logo --- */
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo__marca {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.22em;
+    line-height: 1;
+    color: var(--texto);
+}
+
+.logo__bajada {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--agua);
+    margin-top: 6px;
+}
+
+/* --- Navegacion --- */
+.navegacion__lista {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.navegacion__enlace {
+    font-size: 15px;
+    color: var(--texto-suave);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.navegacion__enlace:hover,
+.navegacion__enlace:focus-visible {
+    color: var(--texto);
+    border-bottom-color: var(--agua);
+}
+
+.navegacion__enlace--activo {
+    color: var(--texto);
+    border-bottom-color: var(--dinero);
+}
+
+/* --- Boton hamburguesa (oculto en escritorio) --- */
+.menu-boton {
+    display: none;
+    background: none;
+    border: 1px solid var(--borde);
+    color: var(--texto);
+    font-size: 18px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* ---------- 4. Contenido principal ---------- */
+.principal {
+    flex-grow: 1;          /* empuja el pie hacia abajo */
+    padding: 72px 0;
+    position: relative;    /* las capas de abajo se posicionan respecto de esto */
+    overflow: hidden;      /* recorta los bordes borroneados del fondo */
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+}
+
+/* CAPA 1 - la foto de fondo, desenfocada.
+   Va estirada 40px para afuera asi el blur no deja bordes claros. */
+.principal::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+
+    background-image: url('../img/Familia-Portada.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+
+    filter: blur(5px) saturate(0.75);
+}
+
+/* CAPA 2 - el velo de color.
+   Oscurece la izquierda para que se lea el texto, deja ver la foto
+   a la derecha, y abajo termina en el color solido del sitio para
+   que al bajar la pagina el tono se mantenga sin corte. */
+.principal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(13, 17, 20, 0.93) 0%,
+            rgba(13, 17, 20, 0.78) 40%,
+            rgba(17, 30, 31, 0.28) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(20, 34, 34, 0.30) 0%,
+            rgba(20, 34, 34, 0.10) 30%,
+            rgba(13, 17, 20, 0.55) 80%,
+            var(--fondo) 100%
+        );
+}
+
+/* El contenido tiene que quedar por encima de las dos capas */
+.principal > .contenedor {
+    position: relative;
+    z-index: 1;
+}
+
+/* Las 2 columnas iguales */
+.presentacion {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+}
+
+.presentacion__texto,
+.presentacion__imagen {
+    flex: 1 1 0;           /* mismo ancho para las dos columnas */
+    min-width: 0;
+}
+
+.titulo-principal {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 46px;
+    line-height: 1.12;
+    letter-spacing: 0.01em;
+    margin-bottom: 28px;
+}
+
+.presentacion__texto p {
+    color: var(--texto-suave);
+    margin-bottom: 18px;
+    max-width: 62ch;
+}
+
+.boton {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 13px 30px;
+    border: 1px solid var(--dinero);
+    color: var(--dinero);
+    font-size: 14px;
+    letter-spacing: 0.09em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.boton:hover,
+.boton:focus-visible {
+    background-color: var(--dinero);
+    color: var(--fondo);
+}
+
+.presentacion__imagen img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--borde);
+}
+
+/* ---------- 5. Pie de sitio ---------- */
+.pie {
+    background-color: var(--superficie);
+    border-top: 1px solid var(--borde);
+    padding: 34px 0;
+}
+
+.pie__interior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.pie__legales p {
+    font-size: 13px;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+
+.redes {
+    display: flex;
+    gap: 16px;
+}
+
+.redes__enlace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--borde);
+    border-radius: 50%;
+    color: var(--texto-suave);
+    font-size: 17px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.redes__enlace:hover,
+.redes__enlace:focus-visible {
+    color: var(--agua);
+    border-color: var(--agua);
+}
+
+/* ---------- 6. Foco visible para teclado ---------- */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--agua);
+    outline-offset: 3px;
+}
+
+/* ==========================================================
+   7. RESPONSIVE
+   ========================================================== */
+
+/* --- Tablet: se achica la tipografia y el espacio entre columnas --- */
+@media (max-width: 980px) {
+    .titulo-principal {
+        font-size: 38px;
+    }
+
+    .presentacion {
+        gap: 36px;
+    }
+}
+
+/* --- Celular: una sola columna y menu desplegable --- */
+@media (max-width: 760px) {
+
+    .menu-boton {
+        display: block;
+    }
+
+    /* El menu se oculta y ocupa toda la fila cuando se abre */
+    .navegacion {
+        flex-basis: 100%;
+        display: none;
+    }
+
+    .navegacion.abierto {
+        display: block;
+    }
+
+    .navegacion__lista {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        margin-top: 18px;
+    }
+
+    .navegacion__lista li {
+        width: 100%;
+        border-top: 1px solid var(--borde);
+    }
+
+    .navegacion__enlace {
+        display: block;
+        padding: 14px 0;
+        border-bottom: none;
+    }
+
+    .navegacion__enlace:hover,
+    .navegacion__enlace--activo {
+        border-bottom: none;
+        color: var(--dinero);
+    }
+
+    .principal {
+        padding: 44px 0;
+        min-height: 0;
+    }
+
+    /* Las dos columnas pasan a estar una debajo de la otra */
+    .presentacion {
+        flex-direction: column-reverse; /* la imagen queda arriba */
+        gap: 32px;
+    }
+
+    .titulo-principal {
+        font-size: 32px;
+    }
+
+    .pie__interior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* --- Respetar la preferencia de menos animacion --- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================
+   8. PAGINAS INTERIORES (temporadas, galeria, contacto)
+   ========================================================== */
+
+.interior {
+    flex-grow: 1;          /* empuja el pie hacia abajo */
+    padding: 64px 0 80px;
+}
+
+/* --- Encabezado de cada seccion --- */
+.encabezado-seccion {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.titulo-seccion {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.encabezado-seccion p {
+    color: var(--texto-suave);
+    max-width: 62ch;
+}
+
+.subtitulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 22px;
+}
+
+/* ---------- 9. Temporadas ---------- */
+.temporadas {
+    display: flex;
+    flex-wrap: wrap;       /* las tarjetas bajan solas de linea */
+    gap: 26px;
+}
+
+.temporada {
+    /* crece, se achica, y no baja de 260px: dos por fila en escritorio */
+    flex: 1 1 260px;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--dinero);
+    padding: 28px;
+}
+
+.temporada__numero {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--agua);
+}
+
+.temporada__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1;
+    margin: 8px 0 6px;
+}
+
+.temporada__dato {
+    font-size: 13px;
+    color: var(--dinero);
+    margin-bottom: 16px;
+}
+
+.temporada p {
+    color: var(--texto-suave);
+}
+
+/* ---------- 10. Galeria ---------- */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.galeria__item {
+    /* tres por fila en escritorio: 3 x 30% + los gap */
+    flex: 1 1 300px;
+    margin: 0;
+    border: 1px solid var(--borde);
+    background-color: var(--superficie);
+}
+
+.galeria__item img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;     /* recorta sin deformar */
+}
+
+.galeria__item figcaption {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+/* ---------- 11. Contacto ---------- */
+.contacto {
+    display: flex;
+    gap: 56px;
+    align-items: flex-start;
+}
+
+.contacto__formulario {
+    flex: 2 1 380px;       /* el formulario ocupa el doble que los datos */
+}
+
+.contacto__datos {
+    flex: 1 1 240px;
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    padding: 28px;
+}
+
+/* --- Formulario --- */
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.campo label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--texto);
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo select,
+.campo textarea {
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-size: 15px;
+    padding: 12px 14px;
+    width: 100%;
+}
+
+.campo textarea {
+    resize: vertical;      /* solo se estira para abajo */
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #5d6d6f;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: var(--agua);
+}
+
+/* El checkbox va en linea con su etiqueta */
+.campo--linea {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.campo--linea label {
+    margin-bottom: 0;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.formulario .boton {
+    cursor: pointer;
+    background: none;
+    font-family: var(--fuente-texto);
+}
+
+/* --- Datos de contacto --- */
+.datos li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.datos i {
+    color: var(--agua);
+    margin-top: 3px;
+}
+
+.aviso {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--borde);
+    font-size: 12px;
+    color: #5d6d6f;
+}
+
+/* ---------- 12. Responsive de las paginas interiores ---------- */
+@media (max-width: 760px) {
+
+    .interior {
+        padding: 40px 0 56px;
+    }
+
+    .titulo-seccion {
+        font-size: 32px;
+    }
+
+    /* Todo pasa a una sola columna */
+    .temporada,
+    .galeria__item,
+    .contacto__formulario,
+    .contacto__datos {
+        flex-basis: 100%;
+    }
+
+    .contacto {
+        flex-direction: column;
+        gap: 32px;
+    }
+}

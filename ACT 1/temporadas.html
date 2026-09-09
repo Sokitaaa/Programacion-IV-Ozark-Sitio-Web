@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozark | Temporadas</title>
+
+    <!-- Font Awesome (iconos de redes sociales) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos principal -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <!-- ============ CABECERA ============ -->
+    <header class="cabecera">
+        <div class="contenedor cabecera__interior">
+
+            <a href="index.html" class="logo">
+                <span class="logo__marca">OZARK</span>
+                <span class="logo__bajada">Lake of the Ozarks</span>
+            </a>
+
+            <!-- Boton hamburguesa: solo se ve en pantallas chicas -->
+            <button class="menu-boton" id="menuBoton" aria-expanded="false" aria-controls="menuPrincipal" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="navegacion" id="menuPrincipal">
+                <ul class="navegacion__lista">
+                    <li><a href="index.html" class="navegacion__enlace">Inicio</a></li>
+                    <li><a href="temporadas.html" class="navegacion__enlace navegacion__enlace--activo">Temporadas</a></li>
+                    <li><a href="galeria.html" class="navegacion__enlace">Galeria</a></li>
+                    <li><a href="contacto.html" class="navegacion__enlace">Contacto</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- ============ CONTENIDO PRINCIPAL ============ -->
+    <main class="interior">
+      <div class="contenedor">
+
+        <section class="encabezado-seccion">
+            <h1 class="titulo-seccion">Cuatro temporadas</h1>
+            <p>Del primer traslado a Missouri hasta el final, emitidas por Netflix entre 2017 y 2022.</p>
+        </section>
+
+        <section class="temporadas">
+            <article class="temporada">
+                <span class="temporada__numero">Temporada 1</span>
+                <h2 class="temporada__titulo">2017</h2>
+                <p class="temporada__dato">10 episodios</p>
+                <p>Los Byrde llegan al lago con una deuda de ocho millones y tres meses para lavarlos. Marty compra un bar, un motel y una funeraria; Wendy descubre que la unica salida es meterse mas adentro.</p>
+            </article>
+
+            <article class="temporada">
+                <span class="temporada__numero">Temporada 2</span>
+                <h2 class="temporada__titulo">2018</h2>
+                <p class="temporada__dato">10 episodios</p>
+                <p>El casino flotante se vuelve el objetivo y obliga a negociar con los Snell, con el cartel y con la politica de Missouri al mismo tiempo. Ruth Langmore empieza a jugar su propio partido.</p>
+            </article>
+
+            <article class="temporada">
+                <span class="temporada__numero">Temporada 3</span>
+                <h2 class="temporada__titulo">2020</h2>
+                <p class="temporada__dato">10 episodios</p>
+                <p>El casino ya funciona y el problema pasa a ser interno: Marty y Wendy no coinciden en cuanto crecer. La llegada de Ben corre el eje de la temporada hacia la familia.</p>
+            </article>
+
+            <article class="temporada">
+                <span class="temporada__numero">Temporada 4</span>
+                <h2 class="temporada__titulo">2022</h2>
+                <p class="temporada__dato">14 episodios en dos partes</p>
+                <p>La ultima temporada busca la salida definitiva. Los Byrde intentan comprar respetabilidad con una fundacion mientras Ruth cobra sus propias cuentas.</p>
+            </article>
+        </section>
+      </div>
+    </main>
+
+    <!-- ============ PIE DE SITIO ============ -->
+    <footer class="pie">
+        <div class="contenedor pie__interior">
+
+            <div class="pie__legales">
+                <p>Sitio realizado con fines academicos para la materia Programacion IV &mdash; UTN FRH.</p>
+                <p>Ozark es una produccion de Netflix. Todas las marcas y contenidos pertenecen a sus respectivos titulares.</p>
+            </div>
+
+            <ul class="redes">
+                <li><a href="#" class="redes__enlace" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><a href="#" class="redes__enlace" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#" class="redes__enlace" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="#" class="redes__enlace" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+
+        </div>
+    </footer>
+
+    <script src="js/base.js"></script>
+</body>
+</html>
