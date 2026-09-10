@@ -1,0 +1,1692 @@
+/* ==========================================================
+   OZARK - estilos.css
+   Estilos principales del sitio
+   ========================================================== */
+
+/* ---------- 1. Variables ---------- */
+:root {
+    /* Colores */
+    --fondo:          #0d1114;   /* negro con tirada azul */
+    --superficie:     #131b1e;   /* cabecera y pie */
+    --superficie-2:   #182226;   /* tarjetas */
+    --borde:          #223034;
+    --borde-suave:    #1a2529;
+    --texto:          #e2e8e8;
+    --texto-suave:    #93a3a4;
+    --texto-tenue:    #62726f;
+    --agua:           #7db0a4;   /* verde agua del lago */
+    --dinero:         #c19a5f;   /* dorado apagado */
+
+    /* Tipografia */
+    /* Jost es una geometrica basada en las proporciones de Futura,
+       que es la fuente del titulo de la serie. Archivo queda en el
+       cuerpo porque una geometrica cansa en textos largos. */
+    --fuente-titulo:  'Jost', 'Century Gothic', sans-serif;
+    --fuente-texto:   'Archivo', 'Segoe UI', sans-serif;
+
+    /* Escala de espacios: el sitio usa estos valores y ninguno suelto */
+    --e-1: 8px;
+    --e-2: 16px;
+    --e-3: 24px;
+    --e-4: 36px;
+    --e-5: 56px;
+    --e-6: 84px;
+    --e-7: 120px;
+}
+
+/* ---------- 2. Reset basico ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+
+    /* El body es flex en columna para que el pie quede siempre abajo */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Color del texto cuando se selecciona con el mouse */
+::selection {
+    background-color: var(--dinero);
+    color: var(--fondo);
+}
+
+/* Contenedor centrado que usan cabecera, main y pie */
+.contenedor {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--e-3);
+}
+
+/* ---------- 3. Cabecera ---------- */
+.cabecera {
+    background-color: rgba(19, 27, 30, 0.88);
+    backdrop-filter: blur(10px);          /* desenfoca lo que pasa por debajo */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--borde-suave);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.cabecera__interior {
+    display: flex;
+    justify-content: space-between; /* logo a la izquierda, menu a la derecha */
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: var(--e-2);
+    padding-bottom: var(--e-2);
+}
+
+/* --- Logo --- */
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+}
+
+/* El simbolo: la O con el circulo dividido en cuatro */
+.logo__icono {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    overflow: visible;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.logo__icono-o {
+    fill: none;
+    stroke: var(--texto);
+    stroke-width: 4.5;
+    transition: stroke 0.25s ease;
+}
+
+.logo__icono-cruz {
+    stroke: var(--agua);
+    stroke-width: 1.5;
+    transition: stroke 0.25s ease;
+}
+
+/* Los cuatro pictogramas de los cuadrantes.
+   El fill lo toman de aca y los que usan stroke lo declaran
+   como currentColor, asi todos siguen este mismo color. */
+.logo__glifo {
+    fill: var(--texto);
+    color: var(--texto);
+    transition: fill 0.25s ease, color 0.25s ease;
+}
+
+.logo:hover .logo__glifo {
+    fill: var(--dinero);
+    color: var(--dinero);
+}
+
+.logo:hover .logo__icono-o {
+    stroke: var(--dinero);
+}
+
+.logo:hover .logo__icono-cruz {
+    stroke: var(--texto);
+}
+
+.logo__texto {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo__marca {
+    font-family: var(--fuente-titulo);
+    font-weight: 300;
+    font-size: 29px;
+    /* Tracking muy abierto y peso liviano: es como se ve la placa
+       de titulo de la serie */
+    letter-spacing: 0.4em;
+    line-height: 1;
+    color: var(--texto);
+    /* El espaciado sobra al final de la palabra: lo compenso */
+    margin-right: -0.4em;
+}
+
+.logo__bajada {
+    font-size: 11.5px;
+    letter-spacing: 0.17em;
+    color: var(--agua);
+    margin-top: 6px;
+}
+
+/* --- Navegacion --- */
+.navegacion__lista {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.navegacion__enlace {
+    position: relative;
+    /* Mismo tratamiento que el wordmark OZARK: la geometrica en
+       peso liviano, en mayusculas y con las letras muy abiertas.
+       Con tanto tracking el texto se lee mas grande de lo que es,
+       por eso baja a 13px. */
+    font-family: var(--fuente-titulo);
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.19em;
+    color: var(--texto-suave);
+    padding-bottom: 7px;
+    transition: color 0.22s ease;
+}
+
+/* El espaciado sobra despues de la ultima letra y descentra el
+   subrayado: se lo descuento */
+.navegacion__enlace::first-line {
+    letter-spacing: 0.19em;
+}
+
+/* El subrayado es un pseudo-elemento que crece desde la izquierda,
+   asi no salta el alto del texto al pasar el mouse */
+.navegacion__enlace::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--agua);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+}
+
+.navegacion__enlace:hover,
+.navegacion__enlace:focus-visible {
+    color: var(--texto);
+}
+
+.navegacion__enlace:hover::after {
+    transform: scaleX(1);
+}
+
+.navegacion__enlace--activo {
+    color: var(--texto);
+    font-weight: 400;
+}
+
+.navegacion__enlace--activo::after {
+    background-color: var(--dinero);
+    transform: scaleX(1);
+}
+
+/* --- Boton hamburguesa (oculto en escritorio) --- */
+.menu-boton {
+    display: none;
+    background: none;
+    border: 1px solid var(--borde);
+    color: var(--texto);
+    font-size: 18px;
+    padding: 9px 13px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.menu-boton:hover {
+    border-color: var(--agua);
+    color: var(--agua);
+}
+
+/* ==========================================================
+   4. PORTADA
+   ========================================================== */
+.principal {
+    flex-grow: 1;          /* empuja el pie hacia abajo */
+    padding: var(--e-6) 0;
+    position: relative;    /* las capas de abajo se posicionan respecto de esto */
+    overflow: hidden;      /* recorta el zoom y los bordes borroneados del fondo */
+    display: flex;
+    align-items: center;
+    /* Ocupa la pantalla entera menos lo que mide la cabecera.
+       Los 86px salen de medirla: 53 del logo + 32 de padding + 1 del borde. */
+    min-height: calc(100vh - 86px);
+}
+
+/* CAPA 1 - la foto de fondo, desenfocada.
+   Va estirada 40px para afuera asi el blur no deja bordes claros. */
+.principal::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+
+    background-image: url('../img/Familia-Portada.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+
+    filter: blur(3px) saturate(0.7) contrast(1.05);
+
+    /* Zoom de 45 segundos: no se percibe como animacion, se percibe
+       como que la imagen esta viva. Un solo movimiento en toda la pagina. */
+    animation: respirar 45s ease-in-out infinite alternate;
+}
+
+@keyframes respirar {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+}
+
+/* CAPA 2 - el velo de color.
+   Oscurece la izquierda para que se lea el texto, deja ver la foto
+   a la derecha, y abajo termina en el color solido del sitio para
+   que al bajar la pagina el tono se mantenga sin corte. */
+.principal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background:
+        /* Vinieta: oscurece las esquinas y empuja la mirada al centro,
+           igual que la fotografia de la serie */
+        radial-gradient(
+            120% 90% at 50% 45%,
+            rgba(13, 17, 20, 0) 30%,
+            rgba(13, 17, 20, 0.55) 100%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(13, 17, 20, 0.92) 0%,
+            rgba(13, 17, 20, 0.72) 42%,
+            rgba(17, 30, 31, 0.12) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(20, 34, 34, 0.26) 0%,
+            rgba(20, 34, 34, 0.06) 28%,
+            rgba(13, 17, 20, 0.5) 80%,
+            var(--fondo) 100%
+        );
+}
+
+/* El contenido tiene que quedar por encima de las dos capas */
+.principal > .contenedor {
+    position: relative;
+    z-index: 1;
+}
+
+/* Las 2 columnas iguales */
+.presentacion {
+    display: flex;
+    align-items: center;
+    gap: var(--e-6);
+}
+
+.presentacion__texto,
+.presentacion__imagen {
+    flex: 1 1 0;           /* mismo ancho para las dos columnas */
+    min-width: 0;
+}
+
+.titulo-principal {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: clamp(36px, 4.2vw, 56px);  /* se adapta solo al ancho */
+    line-height: 1.1;
+    letter-spacing: 0.004em;
+    margin-bottom: var(--e-3);
+}
+
+/* Una linea fina arriba del titulo, como marca de apertura */
+.titulo-principal::before {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 2px;
+    background-color: var(--dinero);
+    margin-bottom: var(--e-3);
+}
+
+/* Los tres parrafos van iguales: un solo peso de texto para todo
+   el bloque, asi la portada tiene dos niveles y no tres */
+.presentacion__texto p {
+    color: #b0bcbc;
+    margin-bottom: var(--e-2);
+    max-width: 56ch;
+}
+
+.boton {
+    display: inline-block;
+    margin-top: var(--e-3);
+    padding: 14px 34px;
+    border: 1px solid var(--dinero);
+    color: var(--dinero);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    transition: color 0.28s ease;
+}
+
+/* El relleno entra desde la izquierda en vez de aparecer de golpe */
+.boton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dinero);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.32s ease;
+    z-index: -1;
+}
+
+.boton:hover,
+.boton:focus-visible {
+    color: var(--fondo);
+}
+
+.boton:hover::before,
+.boton:focus-visible::before {
+    transform: scaleX(1);
+}
+
+/* --- La imagen de la portada, con marco desplazado --- */
+.presentacion__imagen {
+    position: relative;
+}
+
+/* Marco fino corrido en diagonal: da profundidad sin sombras */
+.presentacion__imagen::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(193, 154, 95, 0.45);
+    pointer-events: none;
+}
+
+.presentacion__imagen img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--borde);
+}
+
+
+/* ---------- Grano de pelicula ----------
+   Ruido generado por SVG, fijo sobre toda la ventana. Es lo que hace
+   que una foto digital sobre fondo negro parezca material filmado. */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;   /* no interfiere con clicks ni scroll */
+    z-index: 5;
+    opacity: 0.05;
+    /* El SVG mide 180x180 fijos y se repite en mosaico. Sin medidas
+       el navegador genera una textura del tamano de la ventana y la
+       recalcula en cada resize, que es mucho mas caro. */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    background-repeat: repeat;
+}
+
+/* ---------- Entrada de la portada ----------
+   Un solo momento coreografiado al cargar, no efectos sueltos. */
+@keyframes entrada {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.titulo-principal,
+.presentacion__texto p,
+.presentacion__texto .boton,
+.presentacion__imagen {
+    animation: entrada 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.titulo-principal              { animation-delay: 0.10s; }
+.presentacion__texto p:nth-of-type(1) { animation-delay: 0.24s; }
+.presentacion__texto p:nth-of-type(2) { animation-delay: 0.32s; }
+.presentacion__texto p:nth-of-type(3) { animation-delay: 0.40s; }
+.presentacion__texto .boton    { animation-delay: 0.52s; }
+.presentacion__imagen          { animation-delay: 0.30s; }
+
+
+/* ---------- 5. Pie de sitio ---------- */
+.pie {
+    background-color: var(--superficie);
+    border-top: 1px solid var(--borde-suave);
+    padding: var(--e-4) 0;
+}
+
+.pie__interior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--e-3);
+}
+
+.pie__legales p {
+    font-size: 13px;
+    color: var(--texto-tenue);
+    line-height: 1.65;
+}
+
+.redes {
+    display: flex;
+    gap: var(--e-2);
+}
+
+.redes__enlace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--borde);
+    border-radius: 50%;
+    color: var(--texto-suave);
+    font-size: 16px;
+    transition: color 0.22s, border-color 0.22s, transform 0.22s;
+}
+
+.redes__enlace:hover,
+.redes__enlace:focus-visible {
+    color: var(--agua);
+    border-color: var(--agua);
+    transform: translateY(-3px);
+}
+
+/* ---------- 6. Foco visible para teclado ---------- */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--agua);
+    outline-offset: 3px;
+}
+
+/* ==========================================================
+   7. PAGINAS INTERIORES (temporadas, galeria, contacto)
+   ========================================================== */
+
+.interior {
+    flex-grow: 1;          /* empuja el pie hacia abajo */
+    padding: var(--e-6) 0 var(--e-7);
+}
+
+/* --- Encabezado de cada seccion --- */
+.encabezado-seccion {
+    margin-bottom: var(--e-5);
+    padding-bottom: var(--e-3);
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.titulo-seccion {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: 0.004em;
+    margin-bottom: var(--e-1);
+}
+
+.encabezado-seccion p {
+    color: var(--texto-suave);
+    max-width: 58ch;
+}
+
+.subtitulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.01em;
+    margin-bottom: var(--e-3);
+}
+
+/* ---------- 8. Temporadas ---------- */
+.temporadas {
+    display: flex;
+    flex-wrap: wrap;       /* las tarjetas bajan solas de linea */
+    gap: var(--e-3);
+}
+
+.temporada {
+    /* crece, se achica, y no baja de 260px: dos por fila en escritorio */
+    flex: 1 1 260px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borde-suave);
+    padding: var(--e-4);
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.temporada:hover {
+    border-color: var(--borde);
+    background-color: #1b262a;
+}
+
+/* La linea dorada del costado crece de arriba hacia abajo al pasar el mouse */
+.temporada::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background-color: var(--dinero);
+    transform: scaleY(0.18);
+    transform-origin: top;
+    transition: transform 0.35s ease;
+}
+
+.temporada:hover::before {
+    transform: scaleY(1);
+}
+
+/* El numero grande de fondo: es el dato principal de la tarjeta,
+   asi que se lee como imagen antes que como texto */
+.temporada__numero {
+    position: absolute;
+    top: 2px;
+    right: 14px;
+    font-family: var(--fuente-titulo);
+    font-weight: 300;
+    font-size: 118px;
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+    color: rgba(125, 176, 164, 0.10);
+    pointer-events: none;
+    user-select: none;
+}
+
+.temporada__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.1;
+    letter-spacing: 0.008em;
+    margin-bottom: 5px;
+}
+
+.temporada__dato {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: var(--dinero);
+    margin-bottom: var(--e-2);
+}
+
+.temporada p {
+    color: var(--texto-suave);
+    font-size: 15px;
+}
+
+/* ---------- 9. Galeria ---------- */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+}
+
+.galeria__item {
+    /* tres por fila en escritorio */
+    flex: 1 1 300px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--borde-suave);
+    background-color: var(--superficie);
+}
+
+.galeria__item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;     /* recorta sin deformar */
+    /* Bajadas de color por defecto: al pasar el mouse vuelven a color pleno.
+       Ademas empareja capturas que vienen con brillos muy distintos. */
+    filter: grayscale(0.35) brightness(0.82);
+    transition: filter 0.4s ease, transform 0.5s ease;
+}
+
+.galeria__item:hover img {
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.04);
+}
+
+/* El pie se apoya sobre la imagen con un degradado, no debajo:
+   asi las seis tarjetas miden exactamente lo mismo */
+.galeria__item figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: var(--e-4) var(--e-2) 14px;
+    font-size: 13.5px;
+    color: var(--texto);
+    background: linear-gradient(
+        180deg,
+        rgba(13, 17, 20, 0) 0%,
+        rgba(13, 17, 20, 0.88) 60%,
+        rgba(13, 17, 20, 0.96) 100%
+    );
+}
+
+/* ---------- 10. Contacto ---------- */
+.contacto {
+    display: flex;
+    gap: var(--e-6);
+    align-items: flex-start;
+}
+
+.contacto__formulario {
+    flex: 2 1 380px;       /* el formulario ocupa el doble que los datos */
+}
+
+.contacto__datos {
+    flex: 1 1 240px;
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borde-suave);
+    border-top: 2px solid var(--agua);
+    padding: var(--e-4);
+}
+
+/* --- Formulario --- */
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--e-3);
+}
+
+.campo label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--e-1);
+    color: var(--texto-suave);
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo select,
+.campo textarea {
+    background-color: var(--superficie);
+    border: 1px solid var(--borde);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-size: 15px;
+    padding: 13px 15px;
+    width: 100%;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.campo textarea {
+    resize: vertical;      /* solo se estira para abajo */
+    line-height: 1.6;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: var(--texto-tenue);
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+    border-color: #2c3d42;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: var(--agua);
+    background-color: #162023;
+}
+
+/* El checkbox va en linea con su etiqueta */
+.campo--linea {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.campo--linea label {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.campo--linea input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--dinero);   /* pinta el tilde con el dorado del sitio */
+    cursor: pointer;
+}
+
+.formulario .boton {
+    cursor: pointer;
+    background: none;
+    font-family: var(--fuente-texto);
+}
+
+/* --- Datos de contacto --- */
+.datos li {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: var(--e-3);
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.datos i {
+    color: var(--agua);
+    margin-top: 4px;
+    font-size: 15px;
+}
+
+.aviso {
+    margin-top: var(--e-3);
+    padding-top: var(--e-2);
+    border-top: 1px solid var(--borde-suave);
+    font-size: 12px;
+    color: var(--texto-tenue);
+}
+
+/* ==========================================================
+   11. RESPONSIVE
+   ========================================================== */
+
+/* --- Tablet --- */
+@media (max-width: 980px) {
+    .presentacion {
+        gap: var(--e-4);
+    }
+
+    .contacto {
+        gap: var(--e-4);
+    }
+}
+
+/* --- Celular: una sola columna y menu desplegable --- */
+@media (max-width: 760px) {
+
+    .menu-boton {
+        display: block;
+    }
+
+    /* El menu se oculta y ocupa toda la fila cuando se abre */
+    .navegacion {
+        flex-basis: 100%;
+        display: none;
+    }
+
+    .navegacion.abierto {
+        display: block;
+    }
+
+    .navegacion__lista {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        margin-top: var(--e-2);
+    }
+
+    .navegacion__lista li {
+        width: 100%;
+        border-top: 1px solid var(--borde-suave);
+    }
+
+    .navegacion__enlace {
+        display: block;
+        padding: 15px 0;
+        font-size: 14px;
+        letter-spacing: 0.16em;
+    }
+
+    /* En el menu desplegable el subrayado no tiene sentido */
+    .navegacion__enlace::after {
+        display: none;
+    }
+
+    .navegacion__enlace--activo {
+        color: var(--dinero);
+    }
+
+    .principal {
+        padding: var(--e-5) 0;
+        min-height: 0;
+    }
+
+    /* Las dos columnas pasan a estar una debajo de la otra */
+    .presentacion {
+        flex-direction: column-reverse; /* la imagen queda arriba */
+        gap: var(--e-4);
+    }
+
+    .presentacion__imagen::before {
+        display: none;   /* el marco corrido no entra en pantalla chica */
+    }
+
+    .interior {
+        padding: var(--e-5) 0 var(--e-6);
+    }
+
+    /* Todo pasa a una sola columna */
+    .temporada,
+    .galeria__item,
+    .contacto__formulario,
+    .contacto__datos {
+        flex-basis: 100%;
+    }
+
+    .contacto {
+        flex-direction: column;
+        gap: var(--e-4);
+    }
+
+    .pie__interior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* --- Respetar la preferencia de menos animacion --- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ==========================================================
+   12. PERSONAJES
+   ========================================================== */
+.personajes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-3);
+}
+
+.personaje {
+    /* Tres por fila. El max-width es lo que impide que una fila
+       incompleta estire las tarjetas hasta deformarlas: sin esto,
+       una fila de dos se reparte todo el ancho y como la foto tiene
+       proporcion fija, se vuelven enormes. */
+    flex: 1 1 280px;
+    max-width: calc((100% - var(--e-3) * 2) / 3);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borde-suave);
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.35s ease;
+}
+
+.personaje:hover {
+    border-color: var(--borde);
+    transform: translateY(-4px);
+}
+
+.personaje__foto {
+    position: relative;
+    overflow: hidden;
+}
+
+.personaje__foto img {
+    width: 100%;
+    aspect-ratio: 3 / 4;   /* retrato: todas las fotos miden igual */
+    object-fit: cover;
+    filter: grayscale(0.55) contrast(1.05);
+    transition: filter 0.45s ease, transform 0.6s ease;
+}
+
+.personaje:hover .personaje__foto img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.04);
+}
+
+/* Degradado al pie de la foto para empalmar con la caja de texto */
+.personaje__foto::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 45%;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(24, 34, 38, 0) 0%,
+        rgba(24, 34, 38, 0.85) 100%
+    );
+}
+
+.personaje__datos {
+    padding: var(--e-3) var(--e-3) var(--e-4);
+    flex-grow: 1;          /* iguala el alto de las tarjetas de la fila */
+}
+
+.personaje__nombre {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 1.15;
+    letter-spacing: 0.008em;
+}
+
+.personaje__actor {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--dinero);
+    margin: 5px 0 var(--e-2);
+}
+
+.personaje__datos p:last-child {
+    color: var(--texto-suave);
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+
+/* Tablet: dos por fila */
+@media (max-width: 980px) {
+    .personaje {
+        max-width: calc((100% - var(--e-3)) / 2);
+    }
+}
+
+/* Celular: una por fila */
+@media (max-width: 760px) {
+    .personaje {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ---------- 13. Titulos de grupo ---------- */
+.titulo-grupo {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.01em;
+    color: var(--agua);
+    margin-bottom: var(--e-3);
+    padding-bottom: var(--e-1);
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.titulo-grupo--separado {
+    margin-top: var(--e-6);
+}
+
+@media (max-width: 760px) {
+    .titulo-grupo--separado {
+        margin-top: var(--e-5);
+    }
+}
+
+/* ---------- 14. Franja ancha ----------
+   Corta la pagina entre los dos grupos de personajes. Como es una
+   imagen apaisada de ancho completo, funciona como respiro visual
+   entre dos bloques de tarjetas verticales. */
+.franja {
+    position: relative;
+    margin: var(--e-6) 0;
+    overflow: hidden;
+    border: 1px solid var(--borde-suave);
+}
+
+.franja img {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    object-position: center 32%;
+    filter: grayscale(0.3) contrast(1.05);
+    transition: filter 0.5s ease, transform 0.7s ease;
+}
+
+.franja:hover img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.02);
+}
+
+.franja figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: var(--e-5) var(--e-3) var(--e-3);
+    font-size: 14px;
+    color: var(--texto);
+    background: linear-gradient(
+        180deg,
+        rgba(13, 17, 20, 0) 0%,
+        rgba(13, 17, 20, 0.9) 65%,
+        rgba(13, 17, 20, 0.97) 100%
+    );
+}
+
+@media (max-width: 760px) {
+    .franja {
+        margin: var(--e-5) 0;
+    }
+
+    .franja img {
+        aspect-ratio: 16 / 10;   /* en celular una franja tan finita no se lee */
+    }
+
+    .franja figcaption {
+        font-size: 13px;
+        padding: var(--e-4) var(--e-2) var(--e-2);
+    }
+}
+
+/* ==========================================================
+   15. VISOR DE IMAGENES (lightbox)
+   El marcado lo genera base.js
+   ========================================================== */
+.visor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;          /* por encima de la cabecera y del grano */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--e-2);
+    padding: var(--e-3);
+
+    background-color: rgba(8, 11, 13, 0.94);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    /* Oculto por defecto: visibility ademas de opacity, si no
+       los botones se pueden clickear estando invisibles */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.visor--abierto {
+    opacity: 1;
+    visibility: visible;
+}
+
+.visor__contenido {
+    max-width: 1100px;
+    max-height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--e-2);
+}
+
+.visor__imagen {
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;   /* entra completa, no se recorta */
+    border: 1px solid var(--borde);
+}
+
+.visor__pie {
+    text-align: center;
+    font-size: 14px;
+    color: var(--texto-suave);
+}
+
+.visor button {
+    background: none;
+    border: 1px solid var(--borde);
+    color: var(--texto-suave);
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.visor button:hover,
+.visor button:focus-visible {
+    color: var(--agua);
+    border-color: var(--agua);
+}
+
+.visor__cerrar {
+    position: absolute;
+    top: var(--e-3);
+    right: var(--e-3);
+}
+
+/* La galeria ahora se puede clickear */
+.galeria__item {
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .visor {
+        gap: var(--e-1);
+        padding: var(--e-2);
+    }
+
+    .visor button {
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .visor__imagen {
+        max-height: 66vh;
+    }
+}
+
+/* ==========================================================
+   16. ESTADOS DEL FORMULARIO
+   ========================================================== */
+.campo__error {
+    display: block;
+    min-height: 17px;
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: #d98080;
+}
+
+.campo--invalido {
+    border-color: #a85c5c !important;
+}
+
+.resultado {
+    margin-top: var(--e-3);
+    padding: 14px 18px;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+}
+
+/* Vacio no ocupa lugar */
+.resultado:empty {
+    display: none;
+}
+
+.resultado--ok {
+    background-color: rgba(125, 176, 164, 0.1);
+    border-left-color: var(--agua);
+    color: var(--texto);
+}
+
+.resultado--error {
+    background-color: rgba(168, 92, 92, 0.12);
+    border-left-color: #a85c5c;
+    color: #e3c4c4;
+}
+
+/* ==========================================================
+   17. PAGINA 404
+   ========================================================== */
+.error404 {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--e-6) var(--e-3);
+}
+
+.error404__numero {
+    font-family: var(--fuente-titulo);
+    font-weight: 300;
+    font-size: clamp(90px, 16vw, 190px);
+    line-height: 0.9;
+    letter-spacing: 0.06em;
+    color: rgba(125, 176, 164, 0.16);
+}
+
+.error404__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: clamp(26px, 3vw, 38px);
+    margin: var(--e-2) 0 var(--e-1);
+}
+
+.error404 p {
+    color: var(--texto-suave);
+    max-width: 46ch;
+    margin: 0 auto;
+}
+
+/* ==========================================================
+   19. CABECERA REDUCIDA
+   ========================================================== */
+.cabecera {
+    transition: background-color 0.3s ease;
+}
+
+.cabecera__interior {
+    transition: padding 0.3s ease;
+}
+
+.logo__marca {
+    transition: font-size 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.logo__bajada {
+    transition: opacity 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
+    max-height: 28px;
+    overflow: hidden;
+}
+
+.cabecera--reducida {
+    background-color: rgba(13, 17, 20, 0.94);
+}
+
+.cabecera--reducida .cabecera__interior {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cabecera--reducida .logo__marca {
+    font-size: 23px;
+    letter-spacing: 0.3em;
+}
+
+.cabecera--reducida .logo__icono {
+    width: 34px;
+    height: 34px;
+}
+
+/* La bajada del logo se pliega en vez de desaparecer de golpe */
+.cabecera--reducida .logo__bajada {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+}
+
+/* ==========================================================
+   20. FILTROS DE PERSONAJES
+   ========================================================== */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-1);
+    margin-bottom: var(--e-2);
+}
+
+.filtro {
+    background: none;
+    border: 1px solid var(--borde);
+    color: var(--texto-suave);
+    font-family: var(--fuente-texto);
+    font-size: 13.5px;
+    letter-spacing: 0.03em;
+    padding: 9px 18px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.filtro:hover {
+    color: var(--texto);
+    border-color: var(--agua);
+}
+
+.filtro--activo {
+    color: var(--fondo);
+    background-color: var(--dinero);
+    border-color: var(--dinero);
+}
+
+.filtros__aviso {
+    font-size: 13px;
+    color: var(--texto-tenue);
+    margin-bottom: var(--e-3);
+    min-height: 20px;
+}
+
+/* ==========================================================
+   21. PAGINA DE DETALLE DE TEMPORADA
+   ========================================================== */
+
+/* Ruta de migas */
+.miga {
+    display: flex;
+    align-items: center;
+    gap: var(--e-1);
+    font-size: 13px;
+    color: var(--texto-tenue);
+    margin-bottom: var(--e-3);
+}
+
+.miga a {
+    color: var(--agua);
+    transition: color 0.2s;
+}
+
+.miga a:hover {
+    color: var(--texto);
+}
+
+/* Dos columnas: sinopsis y ficha */
+.detalle {
+    display: flex;
+    gap: var(--e-6);
+    align-items: flex-start;
+    margin-top: var(--e-5);
+}
+
+.detalle__texto {
+    flex: 2 1 420px;
+}
+
+.detalle__texto p {
+    color: var(--texto-suave);
+    margin-bottom: var(--e-2);
+    max-width: 64ch;
+}
+
+.ficha {
+    flex: 1 1 240px;
+    background-color: var(--superficie-2);
+    border: 1px solid var(--borde-suave);
+    border-top: 2px solid var(--dinero);
+    padding: var(--e-4);
+    /* Acompana el scroll mientras se lee la sinopsis */
+    position: sticky;
+    top: 110px;
+}
+
+.ficha__lista li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--borde-suave);
+}
+
+.ficha__lista li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.ficha__etiqueta {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--texto-tenue);
+}
+
+.ficha__valor {
+    font-size: 15px;
+    color: var(--texto);
+}
+
+/* Paso a la temporada anterior y a la siguiente */
+.pasos {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--e-2);
+    margin-top: var(--e-6);
+    padding-top: var(--e-3);
+    border-top: 1px solid var(--borde-suave);
+}
+
+.paso {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--texto-suave);
+    padding: 12px 20px;
+    border: 1px solid var(--borde-suave);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.paso:hover {
+    color: var(--texto);
+    border-color: var(--agua);
+}
+
+/* El enlace de cada tarjeta.
+   A proposito NO es un recuadro como el boton de la portada:
+   alla es una caja dorada que se rellena, aca es un enlace de
+   texto en verde agua con la linea que se dibuja sola. Dos
+   lenguajes distintos para dos jerarquias distintas. */
+.temporada__mas {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--e-3);
+    padding-bottom: 7px;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    color: var(--agua);
+    transition: color 0.25s ease;
+}
+
+/* La linea arranca corta y se estira hasta el ancho completo */
+.temporada__mas::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--agua);
+    transform: scaleX(0.28);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+                background-color 0.25s ease;
+}
+
+/* La flecha se corre hacia adelante */
+.temporada__mas i {
+    font-size: 11px;
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Al pasar por cualquier parte de la tarjeta: se completa la linea */
+.temporada:hover .temporada__mas::after {
+    transform: scaleX(1);
+}
+
+.temporada:hover .temporada__mas i {
+    transform: translateX(5px);
+}
+
+/* Al pasar por el enlace en si: ademas cambia de color */
+.temporada__mas:hover,
+.temporada__mas:focus-visible {
+    color: var(--texto);
+}
+
+.temporada__mas:hover::after,
+.temporada__mas:focus-visible::after {
+    background-color: var(--texto);
+    transform: scaleX(1);
+}
+
+.temporada__mas:hover i,
+.temporada__mas:focus-visible i {
+    transform: translateX(8px);
+}
+
+@media (max-width: 980px) {
+    .detalle {
+        gap: var(--e-4);
+    }
+}
+
+@media (max-width: 760px) {
+    .detalle {
+        flex-direction: column;
+        gap: var(--e-4);
+    }
+
+    .detalle__texto,
+    .ficha {
+        flex-basis: 100%;
+    }
+
+    .ficha {
+        position: static;   /* pegajoso en celular molesta */
+    }
+
+    .pasos {
+        flex-direction: column;
+    }
+
+    .paso {
+        justify-content: center;
+    }
+}
+
+/* ==========================================================
+   22. ENLACE DE SALTO AL CONTENIDO
+   Está fuera de la pantalla hasta que recibe el foco. Sirve a
+   quien navega con teclado para no tener que pasar por los
+   seis items del menú en cada página.
+   ========================================================== */
+.salto {
+    position: absolute;
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
+    z-index: 200;
+
+    background-color: var(--dinero);
+    color: var(--fondo);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 12px 24px;
+
+    transition: top 0.22s ease;
+}
+
+.salto:focus {
+    top: 12px;
+    outline: 2px solid var(--texto);
+    outline-offset: 2px;
+}
+
+/* ==========================================================
+   23. ENTRADA DE LAS PAGINAS INTERIORES
+
+   Todo en CSS, sin JavaScript. Cada bloque usa los mismos
+   @keyframes que la portada y se diferencia solo por el
+   animation-delay, que es lo que arma el escalonado.
+
+   Se dispara al cargar la pagina, no al scrollear. Es mas
+   simple y no tiene estados intermedios que puedan fallar.
+   ========================================================== */
+
+.miga,
+.encabezado-seccion,
+.titulo-grupo,
+.filtros,
+.temporada,
+.galeria__item,
+.personaje,
+.franja,
+.contacto__formulario,
+.contacto__datos,
+.detalle__texto,
+.ficha,
+.pasos {
+    animation: entrada 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* --- Cabeceras de seccion --- */
+.miga                { animation-delay: 0.06s; }
+.encabezado-seccion  { animation-delay: 0.12s; }
+.titulo-grupo        { animation-delay: 0.18s; }
+.filtros             { animation-delay: 0.22s; }
+.franja              { animation-delay: 0.22s; }
+
+/* --- Temporadas: 4 tarjetas --- */
+.temporada:nth-child(1) { animation-delay: 0.26s; }
+.temporada:nth-child(2) { animation-delay: 0.34s; }
+.temporada:nth-child(3) { animation-delay: 0.42s; }
+.temporada:nth-child(4) { animation-delay: 0.50s; }
+
+/* --- Galeria: 6 imagenes --- */
+.galeria__item:nth-child(1) { animation-delay: 0.26s; }
+.galeria__item:nth-child(2) { animation-delay: 0.33s; }
+.galeria__item:nth-child(3) { animation-delay: 0.40s; }
+.galeria__item:nth-child(4) { animation-delay: 0.47s; }
+.galeria__item:nth-child(5) { animation-delay: 0.54s; }
+.galeria__item:nth-child(6) { animation-delay: 0.61s; }
+
+/* --- Personajes: 6 por grupo, el contador arranca de nuevo
+       en cada seccion porque nth-child cuenta dentro del padre --- */
+.personaje:nth-child(1) { animation-delay: 0.26s; }
+.personaje:nth-child(2) { animation-delay: 0.33s; }
+.personaje:nth-child(3) { animation-delay: 0.40s; }
+.personaje:nth-child(4) { animation-delay: 0.47s; }
+.personaje:nth-child(5) { animation-delay: 0.54s; }
+.personaje:nth-child(6) { animation-delay: 0.61s; }
+
+/* --- Contacto --- */
+.contacto__formulario { animation-delay: 0.26s; }
+.contacto__datos      { animation-delay: 0.36s; }
+
+/* --- Detalle de temporada --- */
+.detalle__texto { animation-delay: 0.26s; }
+.ficha          { animation-delay: 0.36s; }
+.pasos          { animation-delay: 0.46s; }

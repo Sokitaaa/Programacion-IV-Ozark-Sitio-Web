@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozark | Personajes</title>
+
+    <meta name="description" content="Quién es quién en Ozark: los Byrde, los Langmore, los Snell y el cartel, con los actores que los interpretan.">
+    <meta name="author" content="Acosta Tomás Lautaro">
+    <meta name="theme-color" content="#0d1114">
+
+    <!-- Cómo se ve el link al compartirlo en WhatsApp, X o Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ozark | Personajes">
+    <meta property="og:description" content="Quién es quién en Ozark: los Byrde, los Langmore, los Snell y el cartel, con los actores que los interpretan.">
+    <meta property="og:image" content="img/Familia-Portada.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Icono de la pestana -->
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+
+    <!-- Font Awesome (iconos de redes sociales) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos principal -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <!-- Primer elemento enfocable: permite saltear el menú con el teclado -->
+    <a href="#contenido" class="salto">Ir al contenido</a>
+
+    <!-- ============ CABECERA ============ -->
+    <header class="cabecera">
+        <div class="contenedor cabecera__interior">
+
+            <a href="index.html" class="logo">
+                <span class="logo__marca">OZARK</span>
+                <span class="logo__bajada">Lake of the Ozarks</span>
+            </a>
+
+            <!-- Boton hamburguesa: solo se ve en pantallas chicas -->
+            <button class="menu-boton" id="menuBoton" aria-expanded="false" aria-controls="menuPrincipal" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="navegacion" id="menuPrincipal">
+                <ul class="navegacion__lista">
+                    <li><a href="index.html" class="navegacion__enlace">Inicio</a></li>
+                    <li><a href="temporadas.html" class="navegacion__enlace">Temporadas</a></li>
+                    <li><a href="personajes.html" class="navegacion__enlace navegacion__enlace--activo">Personajes</a></li>
+                    <li><a href="galeria.html" class="navegacion__enlace">Galería</a></li>
+                    <li><a href="contacto.html" class="navegacion__enlace">Contacto</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- ============ CONTENIDO PRINCIPAL ============ -->
+    <main class="interior" id="contenido">
+      <div class="contenedor">
+
+        <section class="encabezado-seccion">
+            <h1 class="titulo-seccion">Personajes</h1>
+            <p>Quién es quién en el lago de los Ozarks.</p>
+        </section>
+
+
+        <div class="filtros" role="group" aria-label="Filtrar personajes por familia">
+            <button type="button" class="filtro filtro--activo" data-filtro="todos">Todos</button>
+            <button type="button" class="filtro" data-filtro="byrde">Byrde</button>
+            <button type="button" class="filtro" data-filtro="langmore">Langmore</button>
+            <button type="button" class="filtro" data-filtro="snell">Snell</button>
+            <button type="button" class="filtro" data-filtro="cartel">Cartel</button>
+            <button type="button" class="filtro" data-filtro="lago">El lago</button>
+        </div>
+
+        <p class="filtros__aviso" id="filtroAviso" role="status"></p>
+
+        <!-- ---------- Principales: 6, dos filas completas ---------- -->
+        <h2 class="titulo-grupo">Principales</h2>
+
+        <section class="personajes">
+
+            <article class="personaje" data-grupo="byrde">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Marty.jpg" alt="Marty Byrde" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Marty Byrde</h3>
+                    <p class="personaje__actor">Jason Bateman</p>
+                    <p>Asesor financiero. Calcula todo y casi siempre acierta, pero cada acierto lo mete un paso más adentro.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="byrde">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Wendy.jpg" alt="Wendy Byrde" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Wendy Byrde</h3>
+                    <p class="personaje__actor">Laura Linney</p>
+                    <p>Ex operadora política. Empieza acompañando las decisiones de Marty y termina tomando las que él no se anima a tomar.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="langmore">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Ruth.jpg" alt="Ruth Langmore" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Ruth Langmore</h3>
+                    <p class="personaje__actor">Julia Garner</p>
+                    <p>Creció en el parque de casas rodantes y aprendió a robar antes que a confiar. La más inteligente del lago y la que menos tiene para perder.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="byrde">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Charlotte.jpg" alt="Charlotte Byrde" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Charlotte Byrde</h3>
+                    <p class="personaje__actor">Sofia Hublitz</p>
+                    <p>La hija mayor. Es la primera de los chicos en entender de qué vive el padre, y la primera en decidir qué hacer con eso.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="byrde">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Jonah.jpg" alt="Jonah Byrde" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Jonah Byrde</h3>
+                    <p class="personaje__actor">Skylar Gaertner</p>
+                    <p>El menor. Aprende contabilidad y sociedades pantalla a una edad en que debería estar preocupado por otra cosa.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="snell">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Darlene.jpg" alt="Darlene Snell" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Darlene Snell</h3>
+                    <p class="personaje__actor">Lisa Emery</p>
+                    <p>Dueña de las tierras y del cultivo de amapola. Estaba en el lago mucho antes que los Byrde y no piensa negociar nada.</p>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- ---------- Franja ancha entre los dos grupos ---------- -->
+        <figure class="franja">
+            <img src="img/personajes/Familia-Byrde.jpg" alt="La familia Byrde reunida frente a la casa del lago" loading="lazy">
+            <figcaption>Los cuatro Byrde: lo que empieza como un traslado temporal termina durando cuatro temporadas.</figcaption>
+        </figure>
+
+        <!-- ---------- Secundarios: 6, dos filas completas ---------- -->
+        <h2 class="titulo-grupo">Secundarios</h2>
+
+        <section class="personajes">
+
+            <article class="personaje" data-grupo="snell">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Jacob.jpg" alt="Jacob Snell" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Jacob Snell</h3>
+                    <p class="personaje__actor">Peter Mullan</p>
+                    <p>El marido de Darlene. Es el que negocia, aunque las decisiones que importan las toma ella.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="cartel">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Helen.jpg" alt="Helen Pierce" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Helen Pierce</h3>
+                    <p class="personaje__actor">Janet McTeer</p>
+                    <p>La abogada del cartel. Es el puente entre los Byrde y Navarro, y nunca queda claro de qué lado juega.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="cartel">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Navarro.jpg" alt="Omar Navarro" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Omar Navarro</h3>
+                    <p class="personaje__actor">Felix Solis</p>
+                    <p>El jefe del cartel. No aparece seguido, pero todas las decisiones terminan pasando por su mesa.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="byrde">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Ben.jpg" alt="Ben Davis" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Ben Davis</h3>
+                    <p class="personaje__actor">Tom Pelphrey</p>
+                    <p>El hermano de Wendy. Es lo único en toda la serie que no se puede administrar ni calcular.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="langmore">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Wyatt.jpg" alt="Wyatt Langmore" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Wyatt Langmore</h3>
+                    <p class="personaje__actor">Charlie Tahan</p>
+                    <p>Primo de Ruth. El único de la familia que quería salir del lago en vez de conquistarlo.</p>
+                </div>
+            </article>
+
+            <article class="personaje" data-grupo="lago">
+                <div class="personaje__foto">
+                    <img src="img/personajes/Rachel.jpg" alt="Rachel Garrison" loading="lazy">
+                </div>
+                <div class="personaje__datos">
+                    <h3 class="personaje__nombre">Rachel Garrison</h3>
+                    <p class="personaje__actor">Jordana Spiro</p>
+                    <p>La dueña original del Blue Cat. La primera persona a la que Marty le compra el silencio.</p>
+                </div>
+            </article>
+
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ============ PIE DE SITIO ============ -->
+    <footer class="pie">
+        <div class="contenedor pie__interior">
+
+            <div class="pie__legales">
+                <p>Sitio realizado con fines académicos para la materia Programación IV &mdash; UTN FRH.</p>
+                <p>Ozark es una producción de Netflix. Todas las marcas y contenidos pertenecen a sus respectivos titulares.</p>
+            </div>
+
+            <ul class="redes">
+                <li><a href="#" class="redes__enlace" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><a href="#" class="redes__enlace" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#" class="redes__enlace" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="#" class="redes__enlace" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+
+        </div>
+    </footer>
+
+    <script src="js/base.js"></script>
+</body>
+</html>
